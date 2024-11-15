@@ -10,11 +10,11 @@ class ProjectController extends Controller
     // Implemented index method
     public function index(){
         // Get all projects datas from db interacting with Project Model
-        $projects = Project::all();
+        $projects = Project::with('technologies', 'type')->get();
         // Return all datas projects in json format
         return response()->json([
             'success'=>true,
-            'response'=>$projects,
+            'results'=>$projects,
         ]);
     }
 }
